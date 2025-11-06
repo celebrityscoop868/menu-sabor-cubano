@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menú Sabor Cubano</title>
+<style>
+  body { font-family: Arial; background-color: #fff8f0; color: #333; margin: 0; padding: 0 20px; }
+  h1 { text-align: center; color: #d35400; margin-top: 20px; }
+  h2 { margin-top: 30px; color: #c0392b; border-bottom: 2px solid #e67e22; padding-bottom: 5px; }
+  .menu-item { display: flex; justify-content: space-between; align-items: center; background-color: #ffe6cc; margin: 8px 0; padding: 10px 15px; border-radius: 8px; }
+  .batidos { background-color: #ffebcc; }
+  .bolitas { background-color: #fff0d1; }
+  .pizzas { background-color: #ffd6a6; }
+  .ensaladas { background-color: #ffe0b2; }
+  .menu-item input { width: 60px; padding: 5px; border-radius: 5px; border: 1px solid #ccc; }
+  #total-container { text-align: center; margin: 20px 0; font-size: 1.5em; color: #e67e22; }
+  #pagarBtn { display: block; width: 80%; max-width: 300px; margin: 0 auto 30px auto; padding: 15px; background-color: #d35400; color: white; font-size: 1.2em; border: none; border-radius: 10px; cursor: pointer; transition: background-color 0.3s ease; }
+  #pagarBtn:hover { background-color: #e67e22; }
+</style>
+</head>
+<body>
+<h1>Menú Sabor Cubano</h1>
+
+<h2>Batidos</h2>
+<form id="menuForm">
+  <div class="menu-item batidos"><span>Batido de Guayaba - $3.50</span><input type="number" name="batido_guayaba" value="0" min="0" step="0.01"></div>
+  <div class="menu-item batidos"><span>Batido de Mamey - $3.50</span><input type="number" name="batido_mamey" value="0" min="0" step="0.01"></div>
+  <div class="menu-item batidos"><span>Batido de Mango - $3.50</span><input type="number" name="batido_mango" value="0" min="0" step="0.01"></div>
+
+<h2>Bolitas de Queso</h2>
+  <div class="menu-item bolitas"><span>Bolitas de queso (5) - $4</span><input type="number" name="bolitas_5" value="0" min="0"></div>
+  <div class="menu-item bolitas"><span>Bolitas de queso (8) - $6</span><input type="number" name="bolitas_8" value="0" min="0"></div>
+  <div class="menu-item bolitas"><span>Bolitas de queso (16) - $12</span><input type="number" name="bolitas_16" value="0" min="0"></div>
+
+<h2>Pizzas</h2>
+  <div class="menu-item pizzas"><span>Pizza de Jamón - $10</span><input type="number" name="pizza_jamon" value="0" min="0"></div>
+  <div class="menu-item pizzas"><span>Pizza Hawaiana - $10</span><input type="number" name="pizza_hawaiana" value="0" min="0"></div>
+  <div class="menu-item pizzas"><span>Pizza Napolitana - $7</span><input type="number" name="pizza_napolitana" value="0" min="0"></div>
+
+<h2>Ensaladas</h2>
+  <div class="menu-item ensaladas"><span>Ensalada fría tradicional - $5</span><input type="number" name="ensalada_tradicional" value="0" min="0"></div>
+  <div class="menu-item ensaladas"><span>Ensalada fría especial - $12</span><input type="number" name="ensalada_especial" value="0" min="0"></div>
+
+<div id="total-container">Total: $<span id="total">0</span></div>
+
+<button type="button" id="pagarBtn">Pagar</button>
+</form>
+
+<script>
+const form = document.getElementById('menuForm');
+const totalEl = document.getElementById('total');
+const pagarBtn = document.getElementById('pagarBtn');
+
+form.addEventListener('input', () => {
+  let total = 0;
+  total += parseFloat(form.batido_guayaba.value)*3.5;
+  total += parseFloat(form.batido_mamey.value)*3.5;
+  total += parseFloat(form.batido_mango.value)*3.5;
+  total += parseInt(form.bolitas_5.value)*4;
+  total += parseInt(form.bolitas_8.value)*6;
+  total += parseInt(form.bolitas_16.value)*12;
+  total += parseInt(form.pizza_jamon.value)*10;
+  total += parseInt(form.pizza_hawaiana.value)*10;
+  total += parseInt(form.pizza_napolitana.value)*7;
+  total += parseInt(form.ensalada_tradicional.value)*5;
+  total += parseInt(form.ensalada_especial.value)*12;
+  totalEl.textContent = total.toFixed(2);
+});
+
+pagarBtn.addEventListener('click', () => {
+  window.open('https://forms.gle/FXMAQSvVavPwHp7t7', '_blank');
+});
+</script>
+</body>
+</html>
